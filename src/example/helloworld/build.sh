@@ -1,3 +1,5 @@
+# sudo ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/asm
+
 clang -O2 -target bpf -c hello_ebpf.c -o hello_ebpf.o
 g++ -o hello_user hello_user.cpp -lbpf
 

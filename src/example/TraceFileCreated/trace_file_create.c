@@ -60,3 +60,33 @@ int trace_file_create(struct pt_regs *ctx) {
 
     return 0;
 }
+
+
+// #include <linux/bpf.h>
+// #include <linux/fs.h>
+// #include <linux/ptrace.h>
+// #include <bpf/bpf_helpers.h>
+// #include <bpf/bpf_tracing.h>
+
+// static const char fmt[] SEC(".rodata") = "File created: %s (read: %d)\n";
+
+// SEC("kprobe/do_sys_open")
+// int trace_file_create(struct pt_regs *ctx) {
+//     char filename[256];
+//     int flags;
+//     int read_len;
+
+//     // Extract filename (second argument)
+//     void *filename_ptr = (void *)PT_REGS_PARM2(ctx);
+//     read_len = bpf_probe_read_user_str(filename, sizeof(filename), filename_ptr);
+
+//     // Extract flags (third argument)
+//     flags = PT_REGS_PARM3(ctx);
+
+//     // Print output
+//     bpf_trace_printk(fmt, sizeof(fmt), filename_ptr, read_len);
+    
+//     return 0;
+// }
+
+// char _license[] SEC("license") = "GPL";

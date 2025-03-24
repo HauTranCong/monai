@@ -1,4 +1,4 @@
-clang -O2 -target bpf -c trace_file_create.c -o trace_file_create.o
+clang -O2 -target bpf -D__TARGET_ARCH_x86 -c trace_file_create.c -o trace_file_create.o
 g++ -o ebpf_loader ebpf_loader.cpp -lbpf
 
 # dump the eBPF program
